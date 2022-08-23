@@ -34,7 +34,7 @@ my_choice = int(input("Choose Rock (0), Paper (1) or Scissors (2): "))
 print(f"Your choice:\n{rpc[my_choice]}\nComputer choose:\n{rpc[cpu_choice]}")
 
 if cpu_choice == my_choice:
-     print("Its a draw.")
+    print("Its a draw.")
 else:
     if cpu_choice == 0 and my_choice == 1:
         print("You win.")
