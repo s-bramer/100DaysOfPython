@@ -12,19 +12,19 @@ colours = [
     "SeaGreen",
 ]
 angles = [90, 180, 270, 0]
-timmy = Turtle()
+timmy_the_turtle = Turtle()
 # timmy.shape("turtle")
-timmy.pensize(10)
-timmy.speed("fastest")
+timmy_the_turtle.pensize(10)
+timmy_the_turtle.speed("fastest")
 
 
 def move_turtle(t_angle):
-    timmy.forward(30)
-    timmy.right(t_angle)
+    timmy_the_turtle.forward(30)
+    timmy_the_turtle.right(t_angle)
 
 
 for _ in range(1000):
-    timmy.color(random.choice(colours))
+    timmy_the_turtle.color(random.choice(colours))
     move_turtle(random.choice(angles))
 
 screen = Screen()
