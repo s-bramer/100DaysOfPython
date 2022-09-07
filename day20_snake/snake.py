@@ -13,23 +13,33 @@ class Snake:
         self.segments = []
         self.create_snake()
         self.head = self.segments[0]
-
+        self.tail = self.segments[-1]
+    
+    def create_snake(self):
+        """Inital step to create starting snake"""
+        for segment in STARTING_POSITION:
+            self.add_segements(segment)
+    
     def move(self):
         """Moving the snake about"""
         for x in range(len(self.segments)-1,0,-1):
             new_x = self.segments[x-1].xcor()
             new_y = self.segments[x-1].ycor()
             self.segments[x].goto(new_x,new_y)
-        self.head.forward(self.pixel)
-            
-    def create_snake(self):
-        """Inital step to create starting snake"""
-        for segment in STARTING_POSITION:
-            new_segment = Turtle("square")
-            new_segment.color("white")
-            new_segment.penup()
-            new_segment.goto(segment)
-            self.segments.append(new_segment)
+        self.head.forward(self.pixel)      
+
+    def add_segements(self, position):
+        """Adds segments to the snake body"""
+        new_segment = Turtle("square")
+        new_segment.color("white")
+        new_segment.penup()
+        new_segment.goto(position)
+        self.segments.append(new_segment)
+    
+    def extend(self):
+        """Extends snake by one segement (when food was eaten)"""
+        self.add_segements(self.tail.position())
+    
     def up(self):
         """Moves the snake up"""
         if self.head.heading() != DOWN:

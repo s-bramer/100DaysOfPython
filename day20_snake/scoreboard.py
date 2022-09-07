@@ -1,6 +1,10 @@
 from turtle import Turtle
+ALIGNMENT = "center"
+FONT = ('Courier', 20, 'bold')
+
 
 class Scoreboard(Turtle):
+    """Class Scoreboard - inherits from Turtle"""
     def __init__(self) -> None:
         super().__init__()
         self.score = 0
@@ -11,7 +15,11 @@ class Scoreboard(Turtle):
         self.update()
     
     def update(self):
-        self.goto(0,280)
         self.clear()
-        self.write(f"Score: {self.score}", move=False, align='center', font=('Arial', 12, 'bold'))
+        self.goto(0,270)
+        self.write(f"Score: {self.score}", move=False, align=ALIGNMENT, font= FONT)
+    
+    def game_over(self):
+        self.goto(0,0)
+        self.write("GAME OVER", move=False, align=ALIGNMENT, font=('Courier', 24, 'bold'))
         
