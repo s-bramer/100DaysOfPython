@@ -8,7 +8,7 @@ screen = Screen()
 
 screen.setup(width=800,height=600)
 screen.bgcolor("black")
-screen.title("My Snake Game")
+screen.title("My Pong Game")
 screen.tracer(0)
 
 board = Board()
@@ -28,12 +28,14 @@ game_over = False
 while not game_over:
     ball.move()
     screen.update()
-    if ball.xcor() > 390:
-        ball.bounce("right")
-    elif ball.xcor() < -390:
-        ball.bounce("left")
-    elif ball.ycor() > 290:
-        ball.bounce("top")
-    elif ball.ycor() < -290:
-        ball.bounce("bottom")
+    time.sleep(0.01)
+    # check if ball hit the top or bottom
+    if ball.ycor() > 280 or ball.ycor() < -280:
+        ball.bounce_y()
+    elif ball.xcor() > 380 or ball.xcor() < -380:
+        ball.bounce_x()
+    #detect collision with paddles
+    if ball.distance(right_paddle) < 50 and ball.xcor() > 320 or ball.distance(left_paddle) < 50 and ball.xcor() > -340:
+        ball.bounce_x()
+
 screen.exitonclick()

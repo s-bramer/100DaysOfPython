@@ -12,6 +12,8 @@ class Board(Turtle):
         self.speed("fastest")
         self.update()
         self.draw_net()
+        self.score_l = 0
+        self.score_r = 0
 
     def update(self):
         self.clear()

@@ -1,5 +1,5 @@
 from turtle import Turtle
-BALL_SPEED = 2
+BALL_SPEED = 10
 BALL_DIRECTION = 45
 
 class Ball(Turtle):
@@ -9,38 +9,24 @@ class Ball(Turtle):
         self.color("red")
         self.penup()
         self.setheading(BALL_DIRECTION)
+        self.x_move = 10
+        self.y_move = 10
 
     def move(self):
-        self.forward(BALL_SPEED)
+        new_x = self.xcor() + self.x_move
+        new_y = self.ycor() + self.y_move
+        self.goto(new_x,new_y)
     
 #if ball.xcor() > 390 or ball.xcor() < -390 or ball.ycor() > 290 or ball.ycor() < -290:
 
-    def bounce(self, wall):
+    def bounce_y(self):
         """Change direction of ball when wall hit"""
-        #hitting the right border
-        if wall == "right":
-            if self.heading() == 45:
-                self.setheading(135)
-            else:
-                self.setheading(225)
-        #hitting the left border
-        if wall == "left":
-            if self.heading() == 135:
-                self.setheading(45)
-            else:
-                self.setheading(315)
-        #hitting the top
-        if wall == "top":
-            print("hit the top")
-            if self.heading() == 45:
-                print("change direction")
-                self.setheading(315)
-            else:
-                self.setheading(225)
-        #hitting the bottom      
-        if wall == "bottom":
-            if self.heading() == 315:
-                self.setheading(45)
-            else:
-                self.setheading(135)
+        print ("hit the top/bottom")
+        self.y_move *= -1
+    
+    def bounce_x(self):
+        """Change direction of ball when wall hit"""
+        print ("hit the side")
+        self.x_move *= -1
+
 
