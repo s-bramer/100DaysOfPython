@@ -32,10 +32,18 @@ while not game_over:
     # check if ball hit the top or bottom
     if ball.ycor() > 280 or ball.ycor() < -280:
         ball.bounce_y()
-    elif ball.xcor() > 380 or ball.xcor() < -380:
-        ball.bounce_x()
     #detect collision with paddles
-    if ball.distance(right_paddle) < 50 and ball.xcor() > 320 or ball.distance(left_paddle) < 50 and ball.xcor() > -340:
+    if ball.distance(right_paddle) < 50 and ball.xcor() > 340 or ball.distance(left_paddle) < 50 and ball.xcor() > -340:
         ball.bounce_x()
 
+    #check if right player scored
+    if ball.xcor() < -380:
+        board.increases_score_r()
+        ball.reset_ball()
+
+    #check if right player scored
+    if ball.xcor() > 380:
+        board.increases_score_l()
+        ball.reset_ball()
+        
 screen.exitonclick()

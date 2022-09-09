@@ -17,16 +17,14 @@ class Ball(Turtle):
         new_y = self.ycor() + self.y_move
         self.goto(new_x,new_y)
     
-#if ball.xcor() > 390 or ball.xcor() < -390 or ball.ycor() > 290 or ball.ycor() < -290:
-
     def bounce_y(self):
-        """Change direction of ball when wall hit"""
-        print ("hit the top/bottom")
         self.y_move *= -1
     
     def bounce_x(self):
-        """Change direction of ball when wall hit"""
-        print ("hit the side")
+        self.x_move *= -1
+    
+    def reset_ball(self):
+        self.goto(0,0)
         self.x_move *= -1
 
 
