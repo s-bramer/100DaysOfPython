@@ -1,6 +1,5 @@
 from turtle import Turtle
-BALL_SPEED = 10
-BALL_DIRECTION = 45
+BALL_SPEED = 5
 
 class Ball(Turtle):
     def __init__(self) -> None:
@@ -8,7 +7,6 @@ class Ball(Turtle):
         self.shape("circle")
         self.color("red")
         self.penup()
-        self.setheading(BALL_DIRECTION)
         self.x_move = 10
         self.y_move = 10
 
@@ -16,6 +14,7 @@ class Ball(Turtle):
         new_x = self.xcor() + self.x_move
         new_y = self.ycor() + self.y_move
         self.goto(new_x,new_y)
+        print(f"ball x: {new_x}")
     
     def bounce_y(self):
         self.y_move *= -1

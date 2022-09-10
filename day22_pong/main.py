@@ -28,21 +28,24 @@ game_over = False
 while not game_over:
     ball.move()
     screen.update()
-    time.sleep(0.01)
+    time.sleep(0.5)
     # check if ball hit the top or bottom
     if ball.ycor() > 280 or ball.ycor() < -280:
         ball.bounce_y()
     #detect collision with paddles
-    if ball.distance(right_paddle) < 50 and ball.xcor() > 340 or ball.distance(left_paddle) < 50 and ball.xcor() > -340:
+    if ball.distance(right_paddle) < 40 and ball.xcor() > 320:
+        ball.bounce_x()
+    elif ball.distance(left_paddle) < 40 and ball.xcor() > -330:
+        print("left paddle!!")
         ball.bounce_x()
 
     #check if right player scored
-    if ball.xcor() < -380:
+    if ball.xcor() < -390:
         board.increases_score_r()
         ball.reset_ball()
 
     #check if right player scored
-    if ball.xcor() > 380:
+    if ball.xcor() > 390:
         board.increases_score_l()
         ball.reset_ball()
         
