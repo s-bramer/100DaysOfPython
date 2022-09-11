@@ -11,9 +11,9 @@ class Snake:
         #self.length = 3
         self.pixel = 20
         self.segments = []
+        self.create_snake()
         self.head = self.segments[0]
         self.tail = self.segments[-1]
-        self.create_snake()
     
     def create_snake(self):
         """Inital step to create starting snake"""
@@ -39,6 +39,14 @@ class Snake:
     def extend(self):
         """Extends snake by one segement (when food was eaten)"""
         self.add_segements(self.tail.position())
+    
+    def reset_snake(self):
+        for segment in self.segments:
+            segment.goto(1000,1000)
+        self.segments.clear()
+        self.create_snake()
+        self.head = self.segments[0]
+        self.tail = self.segments[-1]
     
     def up(self):
         """Moves the snake up"""
