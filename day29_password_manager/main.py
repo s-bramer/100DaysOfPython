@@ -54,7 +54,7 @@ window.columnconfigure(2, weight=1)
 
 canvas.grid(row=0,column=1, sticky=tk.S, padx=5, pady=5)
 
-#Labels
+#labels
 website_label = tk.Label(text="Website")
 website_label.grid(row=1, column=0, sticky=tk.W, padx=5, pady=5)
 email_label = tk.Label(text="Email/Username")
@@ -62,7 +62,7 @@ email_label.grid(row=2, column=0, sticky=tk.W, padx=5, pady=5)
 password_label = tk.Label(text="Password")
 password_label.grid(row=3, column=0, sticky=tk.W, padx=5, pady=5)
 
-#Entries
+#entries
 website_entry = tk.Entry(width=55)
 website_entry.grid(row=1, column=1, columnspan=2, sticky=tk.W, padx=5, pady=5)
 #set cursor into website entry on start
@@ -72,7 +72,7 @@ email_entry.grid(row=2, column=1, columnspan=2, sticky=tk.W, padx=5, pady=5)
 password_entry = tk.Entry(width=25)
 password_entry.grid(row=3,column=1, sticky=tk.W, padx=5, pady=5)
 
-#Buttons
+#buttons
 generate_password_button = tk.Button(text="Generate Password", width=16, command=generate_password)
 generate_password_button.grid(row=3, column=2, sticky=tk.W, padx=0, pady=5)
 add_button = tk.Button(text="Add", width=45, command=save)
