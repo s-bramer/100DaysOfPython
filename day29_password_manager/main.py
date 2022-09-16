@@ -6,6 +6,7 @@ import json
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_password():
+    """generate random password with letters, numbers and symbols"""
     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
@@ -25,6 +26,7 @@ def generate_password():
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
+    """saving entry to JSON file when save button is pressed"""
     website = website_entry.get()
     email = email_entry.get()
     password = password_entry.get()
@@ -61,6 +63,7 @@ def save():
                 website_entry.delete(0, tk.END)
                 password_entry.delete(0, tk.END)
 def search():
+    """search through the password database when button seach is pressed"""
     website = website_entry.get()
     try:
         with open("./day29_password_manager/data.json","r") as data_file:
