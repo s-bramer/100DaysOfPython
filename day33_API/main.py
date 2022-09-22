@@ -8,15 +8,17 @@ import smtplib
 import time
 
 
-#MY_LAT = 51.402560 # Your latitude
-#MY_LONG = -723.484350 # Your longitude
-MY_LAT = -47.1834 # Your latitude
-MY_LONG = 165.5801 # Your longitude
+MY_LAT = 51.402560 # Your latitude
+MY_LONG = -3.484190 # Your longitude
+#MY_LAT = -47.1834 # Your latitude
+#MY_LONG = 165.5801 # Your longitude
 
 SENDER_EMAIL = "pickled.sprout.bay@gmail.com"
 PASSWORD = "hrdeiaoysnreduss"
 RECEIVER_EMAIL = "s.schultchen@gmx.com"
 DISTANCE = 0
+NEW_DISTANCE = 0
+SPEED = 0
 
 def is_dark():
     """returns true if it is dark"""
@@ -38,16 +40,20 @@ def is_dark():
 def is_iss_near():
     """returns true if iss is within 5 degrees of your position"""
     global DISTANCE
+    global NEW_DISTANCE
+    global SPEED
     response = requests.get(url="http://api.open-notify.org/iss-now.json")
     response.raise_for_status()
     data = response.json()
 
     iss_long = float(data["iss_position"]["longitude"])
     iss_lat = float(data["iss_position"]["latitude"])
-    print (f"ISS currently on Lat: {iss_lat} Long: {iss_long}")
+    #print (f"ISS currently on Lat: {iss_lat} Long: {iss_long}")
 
-    DISTANCE = calculate_distance(iss_lat, iss_long)
-    
+    NEW_DISTANCE = calculate_distance(iss_lat, iss_long)
+    SPEED = round((NEW_DISTANCE-DISTANCE)/60,2)
+    DISTANCE = NEW_DISTANCE
+
     return MY_LAT-5 <= iss_lat <= MY_LAT+5 and MY_LONG-5 <= iss_long <= MY_LONG+5
 
 def calculate_distance(iss_lat, iss_long):
@@ -83,8 +89,7 @@ def send_mail(email_text):
 
 while True:
     time.sleep(60)
-    #print(f"Current distance {DISTANCE}km.")
     if is_dark() and is_iss_near():
         print("Sending mail..")
-        send_mail(f"The ISS is currently {DISTANCE}km away.")
- 
+        send_mail(f"The ISS is currently {DISTANCE}km away, moving at {SPEED}km/s..")
+    print(f"Current distance {DISTANCE}km, moving at {SPEED}km/s.")
