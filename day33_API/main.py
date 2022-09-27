@@ -12,10 +12,11 @@ MY_LAT = 51.402560 # Your latitude
 MY_LONG = -3.484190 # Your longitude
 
 SENDER_EMAIL = "pickled.sprout.bay@gmail.com"
-PASSWORD = "hrdeiaoysnreduss"
+PASSWORD = "" #need 2step authentication
 RECEIVER_EMAIL = "s.schultchen@gmx.com"
 DISTANCE = 0
 NEW_DISTANCE = 0
+RANGE = 4 #degrees with sighting should be alerted
 SPEED = 0
 STEP = 60 #time step in sec (how often iss pos is checked)
 
@@ -53,7 +54,7 @@ def is_iss_near():
     NEW_DISTANCE = calculate_distance(iss_lat, iss_long)
     SPEED = round((abs(NEW_DISTANCE-DISTANCE))/STEP,2) #speed only takes distance, should take former vs new location
     DISTANCE = NEW_DISTANCE
-    if MY_LAT-5 <= iss_lat <= MY_LAT+5 and MY_LONG-5 <= iss_long <= MY_LONG+5:
+    if MY_LAT-RANGE <= iss_lat <= MY_LAT+RANGE and MY_LONG-RANGE <= iss_long <= MY_LONG+RANGE:
         return True
 
 def calculate_distance(iss_lat, iss_long):
@@ -76,7 +77,7 @@ def calculate_distance(iss_lat, iss_long):
 
 def send_mail(email_text):
     """sends email 'look up' """
-    email_subject = "Look up! eom"
+    email_subject = "Look up!"
     email_message = f"Subject: {email_subject}\n\n{email_text}"
     connection = smtplib.SMTP("smtp.gmail.com")
     connection.ehlo()

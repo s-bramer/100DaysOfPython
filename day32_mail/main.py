@@ -7,7 +7,7 @@ need to use 2 step varification and app password
 import smtplib
 
 SENDER_EMAIL = "pickled.sprout.bay@gmail.com"
-PASSWORD = ""
+PASSWORD = "" #need 2step authentication
 RECEIVER_EMAIL = "s.schultchen@gmx.com"
 TEXT = "Hello, I am writing an email using only python"
 SUBJECT = "Python Email"
