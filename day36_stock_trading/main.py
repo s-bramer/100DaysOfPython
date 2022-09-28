@@ -77,7 +77,7 @@ def fetch_news():
 
 if stock_jump():
     up_down = None
-    if STOCK_CHANGE < 0:
+    if STOCK_CHANGE > 0:
         up_down = "🔺"
     else:
         up_down = "🔻"
