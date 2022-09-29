@@ -51,9 +51,6 @@ def stock_jump():
     close_db_yesterday = float(data["Time Series (60min)"][db_yesterday]['4. close'])
     
     STOCK_CHANGE = round(((close_yesterday - close_db_yesterday)/close_yesterday)*100,2)
-    print(close_yesterday)
-    print(close_db_yesterday)
-    print(STOCK_CHANGE)
     if (abs(close_yesterday - close_db_yesterday)/close_db_yesterday) > 0.5:
         return True
 
