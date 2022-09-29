@@ -13,9 +13,9 @@ parameters = {
     "appid": api_key,
 }
 
-response = requests.get(OWM_endpoint, params=parameters)
-response.raise_for_status()
-data = response.json()
+# response = requests.get(OWM_endpoint, params=parameters)
+# response.raise_for_status()
+# data = response.json()
 
-print(data["weather"][0]["description"])
+#print(data["weather"][0]["description"])
 #print(os.getenv("PROJECT_DIR"))

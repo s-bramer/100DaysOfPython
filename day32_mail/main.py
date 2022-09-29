@@ -3,11 +3,11 @@ sending emails via python
 currently does not work because of policy restrictions
 need to use 2 step varification and app password
 """
-
+import os
 import smtplib
 
 SENDER_EMAIL = "pickled.sprout.bay@gmail.com"
-PASSWORD = "" #need 2step authentication
+PASSWORD = os.getenv("email_key")
 RECEIVER_EMAIL = "s.schultchen@gmx.com"
 TEXT = "Hello, I am writing an email using only python"
 SUBJECT = "Python Email"

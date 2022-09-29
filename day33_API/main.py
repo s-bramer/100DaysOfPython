@@ -1,6 +1,7 @@
 """  
 Sends an email if the ISS is within 5 degrees lat and long and it is night
 """
+import os
 from datetime import datetime
 from math import sin, cos, sqrt, atan2, radians
 import requests
@@ -12,7 +13,7 @@ MY_LAT = 51.402560 # Your latitude
 MY_LONG = -3.484190 # Your longitude
 
 SENDER_EMAIL = "pickled.sprout.bay@gmail.com"
-PASSWORD = "" #need 2step authentication
+PASSWORD = os.getenv("email_key")
 RECEIVER_EMAIL = "s.schultchen@gmx.com"
 DISTANCE = 0
 NEW_DISTANCE = 0

@@ -8,8 +8,7 @@ STOCK = "TSLA"
 COMPANY_NAME = "Tesla"
 STOCK_API_KEY = "Y4MTNHMMXI9FTO4O"
 STOCK_CHANGE = 0
-EMAIL_PW = "hrdeiaoysnreduss"
-#os.getenv("email_key")
+EMAIL_PW = os.getenv("email_key")
 SENDER_EMAIL = "pickled.sprout.bay@gmail.com"
 RECEIVER_EMAIL = "s.schultchen@gmx.com"
 
@@ -52,7 +51,10 @@ def stock_jump():
     close_db_yesterday = float(data["Time Series (60min)"][db_yesterday]['4. close'])
     
     STOCK_CHANGE = round(((close_yesterday - close_db_yesterday)/close_yesterday)*100,2)
-    if (abs(close_yesterday - close_db_yesterday)/close_db_yesterday) > 0.05:
+    print(close_yesterday)
+    print(close_db_yesterday)
+    print(STOCK_CHANGE)
+    if (abs(close_yesterday - close_db_yesterday)/close_db_yesterday) > 0.5:
         return True
 
 def fetch_news():
@@ -76,6 +78,7 @@ def fetch_news():
     return email_body
 
 if stock_jump():
+    print("sending email")
     up_down = None
     if STOCK_CHANGE > 0:
         up_down = "🔺"
