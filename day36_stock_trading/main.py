@@ -1,6 +1,7 @@
 import os
 from datetime import date
 from datetime import datetime
+from datetime import timedelta
 import smtplib
 import requests
 
@@ -31,27 +32,34 @@ def stock_jump():
     global STOCK_CHANGE 
     #get dates
     today = date.today()
-    yesterday = str(datetime(today.year, today.month, today.day-1, hour=20, minute=00, second=00))
-    db_yesterday = str(datetime(today.year, today.month, today.day-2, hour=20, minute=00, second=00))
+    yesterday = str(date.today()- timedelta(days=3))
+    db_yesterday = str(date.today()- timedelta(days=4))
+
+    # yesterday = str(datetime(today.year, today.month, today.day-1, hour=20, minute=00, second=00))
+    # db_yesterday = str(datetime(today.year, today.month, today.day-2, hour=20, minute=00, second=00))
 
     #access stock data
     alphavantage_endpoint = "https://www.alphavantage.co/query"
     stock_parameters = {
-        "function": "TIME_SERIES_INTRADAY",
+        "function": "TIME_SERIES_DAILY",
         "symbol": STOCK,
-        "interval": "60min",
         "apikey": STOCK_API_KEY,
     }
 
     response = requests.get(alphavantage_endpoint, params=stock_parameters)
     response.raise_for_status()
+
     data = response.json()
+        
+    close_yesterday = float(data["Time Series (Daily)"][yesterday]['4. close'])
+    close_db_yesterday = float(data["Time Series (Daily)"][db_yesterday]['4. close'])
     
-    close_yesterday = float(data["Time Series (60min)"][yesterday]['4. close'])
-    close_db_yesterday = float(data["Time Series (60min)"][db_yesterday]['4. close'])
-    
+    print(close_yesterday)
+    print(close_db_yesterday)
+
+
     STOCK_CHANGE = round(((close_yesterday - close_db_yesterday)/close_yesterday)*100,2)
-    if (abs(close_yesterday - close_db_yesterday)/close_db_yesterday) > 0.5:
+    if abs(STOCK_CHANGE) > 5:
         return True
 
 def fetch_news():
@@ -73,6 +81,7 @@ def fetch_news():
         date = results[article]["pubDate"]
         email_body += "Title: " + str(title) + "\n"
     return email_body
+
 
 if stock_jump():
     print("sending email")
