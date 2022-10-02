@@ -32,11 +32,8 @@ def stock_jump():
     global STOCK_CHANGE 
     #get dates
     today = date.today()
-    yesterday = str(date.today()- timedelta(days=3))
-    db_yesterday = str(date.today()- timedelta(days=4))
-
-    # yesterday = str(datetime(today.year, today.month, today.day-1, hour=20, minute=00, second=00))
-    # db_yesterday = str(datetime(today.year, today.month, today.day-2, hour=20, minute=00, second=00))
+    yesterday = str(date.today()- timedelta(days=1))
+    db_yesterday = str(date.today()- timedelta(days=2))
 
     #access stock data
     alphavantage_endpoint = "https://www.alphavantage.co/query"
