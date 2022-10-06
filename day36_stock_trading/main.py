@@ -30,10 +30,12 @@ def send_mail(email_text):
 def stock_jump():
     """checks whether stock has increased/decreased by 5% between yesterday and the day before"""
     global STOCK_CHANGE 
-    #get dates
-    today = date.today()
-    yesterday = str(date.today()- timedelta(days=1))
-    db_yesterday = str(date.today()- timedelta(days=2))
+    # get dates
+    # replaced with list comprehension (taking last two entries) as e.g. weekends don't have data
+
+    # today = date.today()
+    # yesterday = str(date.today()- timedelta(days=1))
+    # db_yesterday = str(date.today()- timedelta(days=2))
 
     #access stock data
     alphavantage_endpoint = "https://www.alphavantage.co/query"
@@ -46,14 +48,14 @@ def stock_jump():
     response = requests.get(alphavantage_endpoint, params=stock_parameters)
     response.raise_for_status()
 
-    data = response.json()
-        
-    close_yesterday = float(data["Time Series (Daily)"][yesterday]['4. close'])
-    close_db_yesterday = float(data["Time Series (Daily)"][db_yesterday]['4. close'])
-    
-    print(close_yesterday)
-    print(close_db_yesterday)
+    data = response.json()["Time Series (Daily)"]
+    # turn dictionary into list of prices for each day
+    price_list = [value for (key,value) in data.items()]
 
+    # close_yesterday = float(data["Time Series (Daily)"][yesterday]['4. close'])
+    # close_db_yesterday = float(data["Time Series (Daily)"][db_yesterday]['4. close'])
+    close_yesterday = float(price_list[0]['4. close'])
+    close_db_yesterday = float(price_list[1]['4. close'])
 
     STOCK_CHANGE = round(((close_yesterday - close_db_yesterday)/close_yesterday)*100,2)
     if abs(STOCK_CHANGE) > 5:
@@ -78,7 +80,6 @@ def fetch_news():
         date = results[article]["pubDate"]
         email_body += "Title: " + str(title) + "\n"
     return email_body
-
 
 if stock_jump():
     print("sending email")
