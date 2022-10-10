@@ -18,6 +18,7 @@ h1 {
   font-family: "Sacramento", cursive;
   font-size: 5.625rem;
   line-height: 2;
+  z-index: 11;
 }
 
 h2 {
@@ -55,7 +56,7 @@ hr {
   width: 4%;
   margin: 100px auto;
 }
-/* top container */
+
 .top-container {
   background-color: #e4f9f5;
   position: relative;
@@ -85,6 +86,13 @@ hr {
 .bud_img {
   width: 15%;
 }
+
+.environment-img {
+  width: 20%;
+  float: right;
+  padding-left: 30px;
+}
+
 .python-img {
   width: 20%;
   float: left;
@@ -111,7 +119,7 @@ hr {
 .bottom-cloud {
   position: absolute;
   left: 350px;
-  bottom: 300px;
+  bottom: 200px;
 }
 
 .copyright {
@@ -137,7 +145,7 @@ hr {
   border-radius: 10px;
   font-family: "Montserrat", sans-serif;
   color: #ffffff;
-  font-size: 20px;
+  font-size: 1 rem;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
 }
