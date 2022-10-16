@@ -9,7 +9,7 @@ STOCK = "TSLA"
 COMPANY_NAME = "Tesla"
 STOCK_API_KEY = "Y4MTNHMMXI9FTO4O"
 STOCK_CHANGE = 0
-EMAIL_PW = os.getenv("email_key")
+EMAIL_PW = os.getenv("GM_EMAIL_PW")
 SENDER_EMAIL = "pickled.sprout.bay@gmail.com"
 RECEIVER_EMAIL = "s.schultchen@gmx.com"
 
@@ -21,6 +21,7 @@ def send_mail(email_text):
     connection.ehlo()
     connection.starttls() #make connection secure (Transport Layer Security)
     connection.ehlo()
+    print(EMAIL_PW)
     connection.login(user=SENDER_EMAIL, password=EMAIL_PW)
 
     connection.sendmail(from_addr=SENDER_EMAIL, to_addrs=RECEIVER_EMAIL, msg=email_message.encode("utf-8"))
@@ -58,7 +59,7 @@ def stock_jump():
     close_db_yesterday = float(price_list[1]['4. close'])
 
     STOCK_CHANGE = round(((close_yesterday - close_db_yesterday)/close_yesterday)*100,2)
-    if abs(STOCK_CHANGE) > 5:
+    if abs(STOCK_CHANGE) > 1:
         return True
 
 def fetch_news():
