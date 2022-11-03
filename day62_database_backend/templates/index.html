@@ -1,22 +1,47 @@
-{% extends 'bootstrap/base.html' %}
+{% extends 'bootstrap/base.html' %} 
 
-{% block styles %}
-
+{% block styles %} 
 {{ super() }}
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-{% endblock %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"/>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.min.css"> -->
+{% endblock %} 
 
-{% block title %}Coffee and Wifi{% endblock %}
+{% block title %}Coffee and Wifi{% endblock %} 
 
 {% block content %}
 <div class="jumbotron text-center">
-    <div class="container">
-  <h1 class="display-4">☕️ Coffee & Wifi 💻</h1>
-  <p class="lead">Want to work in a cafe but need power and wifi?</p>
-  <hr class="my-4">
-  <p>You've found the right place! Checkout my collection of cafes with data on power socket availability, wifi speed and coffee quality.</p>
-  <a class="btn btn-warning btn-lg" href="{{ url_for('cafes') }}" role="button">Show Me!</a>
+  <div class="container">
+    <h1 class="display-4">☕️ Coffee & Wifi 💻</h1>
+    <p class="lead">Want to work in a cafe but need power and wifi?</p>
+    <hr class="my-4" />
+    <p>
+      You've found the right place! Checkout my collection of cafes with data on
+      power socket availability, wifi speed and coffee quality.
+    </p>
+    <a
+      class="btn btn-warning btn-lg"
+      href="{{ url_for('cafes') }}"
+      role="button"
+      >Show Me!</a
+    >
+  </div>
 </div>
-    </div>
+{% endblock %} 
 
+{% block scripts %}
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.bootstrap5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.colVis.min.js"></script>
+<script src="{{url_for('static', filename='./static/js/main.js')}}"></script> -->
+{{super()}} 
 {% endblock %}
