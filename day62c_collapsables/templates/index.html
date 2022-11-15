@@ -1,0 +1,51 @@
+{% extends 'bootstrap/base.html' %} 
+
+{% block styles %} 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"/>
+{% endblock %} 
+
+{% block title %}Coffee and Wifi{% endblock %} 
+
+{% block content %}
+<div class="jumbotron text-center">
+  <div class="accordion">
+    <div class="contentBx">
+      <div class="label">An Evening of Ghost Stories</div>
+        <div class="content">
+          <p>
+            An evening of local ghost stories and Welsh folklore by candlelight. 
+            Join us in the great hall for a night not to be missed! Complimentary hot drink on arrival. 
+            Please wear warm clothing.
+            Booking required.
+            Tickets must be booked in advance - online or at the site. 
+            Suitable for adults only.
+          </p>        
+        </div>
+    </div>
+    <div class="contentBx">
+      <div class="label">An Evening of Ghost Stories Part2</div>
+        <div class="content">
+          <p>
+            An evening of local ghost stories and Welsh folklore by candlelight. 
+            Join us in the great hall for a night not to be missed! Complimentary hot drink on arrival. 
+            Please wear warm clothing.
+            Booking required.
+            Tickets must be booked in advance - online or at the site. 
+            Suitable for adults only.
+          </p>        
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %} 
+
+{% block scripts %}
+<script>
+const accordion = document.getElementsByClassName('contentBx');
+  for (i=0; i<accordion.length;i++){
+    accordion[i].addEventListener('click', function(){
+      this.classList.toggle('active')
+    })
+  } 
+</script>
+{% endblock %}
