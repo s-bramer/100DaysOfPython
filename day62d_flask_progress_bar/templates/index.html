@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+
+  <style>
+  
+  body {
+    background-color: #D64F2A;
+  }
+  
+  .progress {
+    display: flex;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .status {
+    color: white;
+    margin: auto;
+  }
+
+  .status h2 {
+    padding: 50px;
+    font-size: 80px;
+    font-weight: bold;
+  }
+  
+  </style>
+
+  <title>Status Update</title>
+
+</head>
+
+<body>
+  <div>
+    <form id="test" method="post" action="{{ url_for('index') }}" novalidat>
+      <button id="test" name="test">Start Reload</button>
+    </form>
+  </div>
+  <div class="progress">
+    <div class="status">
+      <h2 id="innerStatus">Loading...</h2>
+    </div>
+  </div>
+
+<script src="./static/main.js"></script>
+</body>
+
+</html>
